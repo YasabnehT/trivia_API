@@ -65,20 +65,20 @@ class TriviaTestCase(unittest.TestCase):
         question_before_delete = Question.query.all()
         
         #delete question and store response
-        response = self.client().delete('/questions/{}'.format(q_id))
+        response = self.client().delete(f'/questions/{q_id}')
         data =json.loads(response.data)
         
         #get questions after delete
         question_after_delete = Question.query.all()
         
-        question = question.query.filter(Question.id ==1).one_or_none()
+        question = question.query.filter(Question.id ==question.id).one_or_none()
         
         # check status code if delete succeded
         self.assertEqual(response.status_code,200) # if true, deleted
         self.assertEqual(data['success'],True)
         
         #deleted.check if id matches
-        self.assertEqual(data['deleted'], q_id)
+        self.assertEqual(data['deleted'], str(q_id))
         
         # check if number of questions reduced by one after delete
         self.assertTrue(len(question_before_delete) - len(question_after_delete) == 1)
@@ -124,8 +124,9 @@ class TriviaTestCase(unittest.TestCase):
     
     def test_search_questions_searchTerm(self):
         #send post request with searchTerm
-        response = self.client().post('/questions', 
-                                    json = {'searchTerm': 'americans'})
+        search_term = {'searchTerm':'b'}
+        response = self.client().post('/questions/search', 
+                                    json = {'searchTerm': search_term})
         data = json.loads(response.data)
         
         self.assertEqual(response.status_code,200)
