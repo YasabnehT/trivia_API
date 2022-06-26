@@ -24,8 +24,8 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
 
-   # set CORS to homepage and origins to everywhere
-    CORS(app, resources= {'/':{'origins': '*'}})
+    # set CORS to homepage and origins to everywhere
+    CORS(app, resources={'/': {'origins': '*'}})
 
 
     #set Access-Control-Allow-Headers and -Methods
