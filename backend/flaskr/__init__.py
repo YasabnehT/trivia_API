@@ -124,7 +124,7 @@ def create_app(test_config=None):
             question.insert()           
             # veiw data
             return jsonify({'success': True, 'created':question.id,
-                            'questions': current_questions, 
+                            'questions': question, 
                             'total_question':len(Question.query.all())})
         except:
             abort(404)
