@@ -198,7 +198,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(response.status_code,404)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'resource not found')
-        
 
 
 # Make the tests conveniently executable
