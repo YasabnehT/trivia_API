@@ -150,7 +150,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['deleted'], str(new_question_id))
         self.assertEqual(question, None)
 
-    def test_play_quiz_game(self):
+    def test_play_quiz(self):
         # send request with category(id =1) and previous questions(3,6)
         requested = {'previous_questions': [
             3, 6], 'quiz_category': {'type': 'Science', 'id': 1}}
